@@ -32,7 +32,10 @@
 	            ]).then(
                     function (route) {
                         myMap.geoObjects.add(route);
-                        getInfoAboutRoute(route);
+                        setInterval(function() {
+                            getInfoAboutRoute(route);
+                        }, 30000);
+                        
                     },
                     function (error) {
                         alert('Возникла ошибка: ' + error.message);
@@ -41,20 +44,25 @@
 	        }
 
 	        function getInfoAboutRoute(route) {
-	            var routeLength = route.getLength(),
+	            var street = [],
+                    length = [],
+                    jamsTime = [],
                     allPaths = route.getPaths(),
+                    lengthCollectionAllPaths = route.getPaths().getLength(),
                     i;
-	            for (i = 0; i < routeLength; i += 1) {
+
+	            for (i = 0; i < lengthCollectionAllPaths; i += 1) {
 	                var currentPath = allPaths.get(i),
                         allSegmentsOfCurrentPath = currentPath.getSegments(),
                         j;
 	                for (j = 0; j < allSegmentsOfCurrentPath.length; j += 1) {
 	                    var currentSegment = allSegmentsOfCurrentPath[j];
-                        setInterval(function() {
-                            sendData(currentSegment.getStreet(), currentSegment.getLength(), currentSegment.getJamsTime());
-                        }, 25000);	                    
+	                    street.push(currentSegment.getStreet());
+	                    length.push(currentSegment.getLength());
+	                    jamsTime.push(currentSegment.getJamsTime());
 	                }
 	            }
+	            sendData(street, length, jamsTime);
 	        }
 
 	        function sendData(street, length, jamsTime) {
@@ -67,7 +75,7 @@
 	                    'jamsTime': jamsTime
 	                }
 	            })
-               .then(function (response) {}, function (response) { alert("Ошибка"); });
+               .then(function (response) {/*Успех*/}, function (response) { alert("Ошибка"); });
 	        }
 	    });
     </script>
