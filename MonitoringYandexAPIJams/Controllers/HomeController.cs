@@ -15,6 +15,5 @@ namespace MonitoringYandexAPIJams.Controllers
         {
             return View();
         }
-
     }
 }

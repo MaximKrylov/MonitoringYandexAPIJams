@@ -1,4 +1,63 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU&load=Map,route" type="text/javascript"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+	<style type="text/css">
+		html { height: 100% }
+		body { height: 100%; margin: 0; padding: 0 }
+		#mapContainer { height: 100%; width: 100% }
+	</style>
+	<script type="text/javascript">
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("mapContainer", {
+                center: [57.005098, 40.954912],
+                zoom: 13
+            });
+            ymaps.route([
+                { type: 'wayPoint', point: "Иваново, улица Кузнецова, 54" },                
+                { type: 'wayPoint', point: 'Иваново, улица 8 Марта, 19' },
+                { type: 'wayPoint', point: 'Иваново, улица Суворова, 5' },
+                { type: 'wayPoint', point: 'Иваново, улица Смирнова, 89' },
+                { type: 'wayPoint', point: 'Иваново, улица Бубнова, 29' },
+                { type: 'wayPoint', point: 'Иваново, улица Лежневская, 177' },
+                { type: 'wayPoint', point: 'Иваново, улица Некрасова, 45' },
+                { type: 'wayPoint', point: 'Иваново, улица Рабфаковская, 34' },
+                { type: 'wayPoint', point: "Иваново, улица Кузнецова, 63" }
+            ]).then(
+                function (route) {
+                    myMap.geoObjects.add(route);
+                    getInfoAboutRoute(route);
+                },
+                function (error) {
+                    alert('Возникла ошибка: ' + error.message);
+                }
+            );
+        }
 
+        function getInfoAboutRoute (route) {
+            var routeLength = route.getLength(),
+                allPaths = route.getPaths(),
+                i;
+            for (i = 0; i < routeLength; i += 1) {
+                var currentPath = allPaths.get(i),
+                    allSegmentsOfCurrentPath = currentPath.getSegments(),
+                    j;
+                for (j = 0; j < allSegmentsOfCurrentPath.length; j += 1) {
+                    var currentSegment = allSegmentsOfCurrentPath[j];
+                    alert(
+                        currentSegment.getStreet() + "\n" +
+                        currentSegment.getLength() + "\n" +
+                        currentSegment.getJamsTime())
+                }
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="mapContainer"></div>
+</body>
+</html>
