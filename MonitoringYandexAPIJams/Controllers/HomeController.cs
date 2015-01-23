@@ -15,5 +15,12 @@ namespace MonitoringYandexAPIJams.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public void GetInfoAndWriteToFile(string street, string length, string jamsTime)
+        {
+            var i = 0;
+        }
+
     }
 }
