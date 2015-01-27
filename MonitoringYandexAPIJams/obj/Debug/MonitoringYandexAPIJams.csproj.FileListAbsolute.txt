@@ -21,6 +21,5 @@ C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\bin\ru\System.Web.Razor.resou
 C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\bin\ru\System.Web.WebPages.resources.dll
 C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\bin\ru\System.Web.WebPages.Deployment.resources.dll
 C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\bin\ru\System.Web.WebPages.Razor.resources.dll
-C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\obj\Debug\MonitoringYandexAPIJams.csprojResolveAssemblyReference.cache
 C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\obj\Debug\MonitoringYandexAPIJams.dll
 C:\MonitoringYandexAPIJams\MonitoringYandexAPIJams\obj\Debug\MonitoringYandexAPIJams.pdb
